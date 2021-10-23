@@ -33,14 +33,17 @@ void shift(const int s) {
 std::string phash(const std::string s) {
     std::string code;
     std::string res;
+    int buf;
     std::vector<int> num;
     for (int i = 0; i < s.length(); i++) {
         code += std::to_string(int(s[i]));
+        buf+=1;
         if (s[i] == ' ')
             break;
     }
     if (code.length()%2 != 0){
         code = code + '0';
+        buf+=1;
     }
 
     for (int i = 0; i < code.length()-1; i+=2){
@@ -53,6 +56,7 @@ std::string phash(const std::string s) {
     for (int i = 0; i < num.size(); i++){
         res += char((num[i] % 75) + 48);
     }
+    buf = 0;
     return res;
 }
 
